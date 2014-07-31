@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "npm test"
+    "test": "./node_modules/.bin/mocha -R spec test/index.js"
   },
   "keywords": [
     "form",
@@ -20,6 +20,8 @@
   "author": "Luke Hudson <luke@speak.geek.nz>",
   "license": "MIT",
   "devDependencies": {
+    "cheerio": "^0.17.0",
+    "express": "^4.7.2",
     "mocha": "^1.21.3",
     "sequelize-sqlite": "^1.7.0",
     "should": "^4.0.4"
@@ -29,6 +31,6 @@
     "lodash": "^2.4.1"
   },
   "peerDependencies": {
-  	"sequelize": "^1.7.9"
+    "sequelize": "^1.7.9"
   }
 }

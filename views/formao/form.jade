@@ -1,0 +1,5 @@
+form(method=form.method(), action=form.action())&attributes(form.attr())
+    for field in fields
+        | !{field}
+    else
+        p.error No form fields!
