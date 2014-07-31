@@ -1,0 +1,34 @@
+{
+  "name": "formao",
+  "version": "0.0.0",
+  "description": "Form scaffolding from Sequelize models",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "form",
+    "scaffold",
+    "sequelize",
+    "ORM",
+    "easy",
+    "forms"
+  ],
+  "author": "Luke Hudson <luke@speak.geek.nz>",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^1.21.3",
+    "sequelize-sqlite": "^1.7.0",
+    "should": "^4.0.4"
+  },
+  "dependencies": {
+    "bluebird": "^2.2.2",
+    "lodash": "^2.4.1"
+  },
+  "peerDependencies": {
+  	"sequelize": "^1.7.9"
+  }
+}
