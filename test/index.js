@@ -6,12 +6,11 @@ process.env.NODE_ENV = 'test';
 
 var should  = require('should');
 var cheerio = require('cheerio');
-var tidy    = require('htmltidy').tidy;
 
 var config = require('./config');
 var Formao = require('../index').Formao;
 
-describe('It should render form correctly', function() {
+describe('Code should work!', function() {
     // console.log(config.models.MyModel.rawAttributes);
 
     var form        = null;
@@ -80,10 +79,8 @@ describe('It should render form correctly', function() {
             .addAttribute('data-testing', '12345')
             .method('PUT')
             .action(fakeRequest.url)
-            .fill(fakeRequest.body)
             .render(config.app, fakeRequest)
             .then(function(html) {
-                tidy(html, {indent: true}, console.log);
                 var $    = cheerio.load(html);
                 var $form = $('form#MyModel_Form');
                 should.exist($form);

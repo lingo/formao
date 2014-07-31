@@ -59,11 +59,11 @@ This is an object which may contain the following keys.
 ## Instance Methods
 All these methods are chainable, except for `render`, and other methods when they are used as getters (no arguments provided) instead of setters, e.g. `formao.method()`, `formao.action()`.
 
-### formao.method(/*method*/)
+### formao.method(/\*method\*/)
 Set the form's HTML `method` attribute.
 If this is called without an argument, then retrieve the `method` attribute.
 
-### formao.action(/*action*/)
+### formao.action(/\*action\*/)
 Set the form's HTML `action` attribute.
 If this is called without an argument, then retrieve the `action` attribute.
 
