@@ -6,6 +6,7 @@ process.env.NODE_ENV = 'test';
 
 var should  = require('should');
 var cheerio = require('cheerio');
+var path    = require('path');
 
 var config = require('./config');
 var Formao = require('../index').Formao;
@@ -108,5 +109,37 @@ describe('Code should work!', function() {
             })
             .catch(done);
     });
+
+    it('should render correctly with different templateDir', function(done) {
+        form = null;
+        form = new Formao(config.models.MyModel, {
+            templateDir: path.resolve(__dirname, '../views/formao')
+        });
+
+        form
+            .addClass('mytest')
+            .addClass('verbose')
+            .addAttribute('data-testing', '12345')
+            .method('PUT')
+            .action(fakeRequest.url)
+            .render(config.app, fakeRequest)
+            .then(function(html) {
+                var $    = cheerio.load(html);
+                var $form = $('form#MyModel_Form');
+                should.exist($form);
+                $form.attr('data-testing').should.equal('12345');
+                $form.attr('method').should.equal('PUT');
+                $form.attr('action').should.equal(fakeRequest.url);
+                $form.attr('class').should.equal('mytest verbose');
+                $form.find('input').should.have.length(4);
+                $form.find('textarea').should.have.length(1);
+                $form.find('textarea').text().should.equal(fakeRequest.body.description);
+                $form.find('input.date').should.have.length(2);
+                $form.find('input#MyModel_Form_name').val().should.equal(fakeRequest.body.name);
+                done();
+            })
+            .catch(done);
+    });
+
 });
 
