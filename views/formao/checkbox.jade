@@ -1,7 +1,8 @@
 .checkbox
     block inputField
-        label(for=inputID) #{label}
+        label(for=inputID)
             - attr = {}
             if value
                 - attr.checked = true;
             input(type="checkbox",name=name,id=inputID,value=1).checkbox&attributes(attr)
+            | #{label}
