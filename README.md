@@ -6,6 +6,13 @@ Luke Hudson <formao@speak.geek.nz>
 ## What is it?
 A forms library designed to scaffold HTML forms from your Sequelize models.
 
+## Installation
+
+    npm install formao # --save # Use --save to add to your package.json
+
+By  default, Formao looks for templates in `formao/` inside your views directory.
+You may either copy `node_modules/formao/views/formao/` to your views directory and modify these templates as desired, or you may change where the views are searched for using the `templateDir` option (see [Constructor Options](#options))
+
 ## Usage example
 
 ~~~js
@@ -40,6 +47,18 @@ A forms library designed to scaffold HTML forms from your Sequelize models.
         });
 ~~~
 
+## TODO
+
+This is a brand new module, so there are lots of things to do.
+Here's a quick list.
+
+- Support more data types (missing ENUM and others)
+- Handle associations?
+- Allow for adding custom data into the HTML without editing the templates
+    + For instance, per-input html (bootstrap input-group-addon?)
+    + Appending submit etc to the form (this is rather vital!)
+    + Appending in custom association fields to the form
+
 ## API
 
 ### new Formao(Model, options, data)
@@ -49,7 +68,7 @@ Note that you'll need to pass in the Model schema definition as the first argume
 
 `Model` sequelize schema of your model (returned from sequelize.define)
 `options` optional `Object` with options as listed below
-`data` optional `Object` with data to fill the form (see [fill](#fill))
+`data` optional `Object` with data to fill the form (see [fill](#formaofilldata))
 
 #### Options
 This is an object which may contain the following keys.
@@ -66,6 +85,15 @@ If this is called without an argument, then retrieve the `method` attribute.
 ### formao.action(/\*action\*/)
 Set the form's HTML `action` attribute.
 If this is called without an argument, then retrieve the `action` attribute.
+
+### formao.label(fieldName, label)
+Override the default (ugly) `<label>` text by specifying a fieldname and the label to use.
+
+### formao.labels(fieldNameToLabelMap)
+Override several default labels by specifying an `Object` whose keys are field names and values are the labels to use.  This will be merged with any previously defined labels.
+
+### formao.labels()
+Use the previous function as a getter to retrieve the map of field names to labels.
 
 ### formao.fill(data)
 Use the `data` *Object* to set the input fields values. This may be a sequelize instance.

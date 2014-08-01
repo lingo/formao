@@ -84,12 +84,30 @@ describe('Code should work!', function() {
         form.attr().should.have.property('class', ['test','another']);
     });
 
+    it('should allow overriding labels', function() {
+        form
+            .label('name', 'Name:');
+        form.labels().should.have.property('name', 'Name:');
+    });
+
+    it('should allow overriding several labels at once', function() {
+        form
+            .labels({
+                name:        'Name',
+                description: 'Project description'
+            });
+        form.labels().should.have.property('name',        'Name');
+        form.labels().should.have.property('description', 'Project description');
+    });
+
+
     it('should render correctly', function(done) {
         form
             .addClass('mytest')
             .addClass('verbose')
             .addAttribute('data-testing', '12345')
             .method('PUT')
+            .label('name', 'Project name')
             .action(fakeRequest.url)
             .render(config.app, fakeRequest)
             .then(function(html) {
@@ -105,6 +123,7 @@ describe('Code should work!', function() {
                 $form.find('textarea').text().should.equal(fakeRequest.body.description);
                 $form.find('input.date').should.have.length(2);
                 $form.find('input#MyModel_Form_name').val().should.equal(fakeRequest.body.name);
+                $form.find('input#MyModel_Form_name').siblings('label').text().should.equal('Project name');
                 done();
             })
             .catch(done);
@@ -122,6 +141,9 @@ describe('Code should work!', function() {
             .addAttribute('data-testing', '12345')
             .method('PUT')
             .action(fakeRequest.url)
+            .labels({
+                description: 'Project description'
+            })
             .render(config.app, fakeRequest)
             .then(function(html) {
                 var $    = cheerio.load(html);
@@ -136,6 +158,7 @@ describe('Code should work!', function() {
                 $form.find('textarea').text().should.equal(fakeRequest.body.description);
                 $form.find('input.date').should.have.length(2);
                 $form.find('input#MyModel_Form_name').val().should.equal(fakeRequest.body.name);
+                $form.find('textarea#MyModel_Form_description').siblings('label').text().should.equal('Project description');
                 done();
             })
             .catch(done);
