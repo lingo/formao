@@ -1,6 +1,6 @@
 extends fieldholder
 block inputField
-    label(for=inputID) #{label}
-    select(name=name,id=inputID).select.form-control
+    label(for=attr.id) #{label}
+    select(name=name,id=attr.id).select.form-control
         for label, value in values
             option(value=value)= label

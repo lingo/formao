@@ -254,6 +254,8 @@ describe('Code should work!', function() {
                 'cancelled': 'cancelled',
                 'processed': 'processed'
         });
+        fields.name.should.have.property('attr');
+        fields.name.attr.should.have.property('id', 'MyModel_Form_name');
         done();
     });
 

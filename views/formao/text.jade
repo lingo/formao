@@ -1,4 +1,4 @@
 extends fieldholder
 block inputField
-    label(for=inputID) #{label}
-    input(type="text",name=name,id=inputID,value=value).text.form-control
+    label(for=attr.id) #{label}
+    input(type="text",name=name,id=attr.id,value=value).text.form-control
