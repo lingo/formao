@@ -1,11 +1,16 @@
 'use strict';
 
-var Sequelize = require('sequelize-sqlite').sequelize,
-    sequelize = new Sequelize('database', 'username', 'password', {
-        dialect: 'sqlite',
-        storage: 'testdb.sqlite',
-        logging: false
-    });
+var Sequelize = require('sequelize-sqlite').sequelize;
+var sequelize = new Sequelize('database', 'username', 'password', {
+    dialect: 'sqlite',
+    storage: 'testdb.sqlite',
+    logging: false
+});
+
+// var sequelize = new Sequelize('postgres://postgres@172.17.0.2/tasker-development', {
+//     dialect: 'postgres',
+//     logging: false
+// });
 
 var MyModel   = sequelize.define('MyModel', {
     name:        { type: Sequelize.STRING,   allowNull: false },
