@@ -1,4 +1,5 @@
 extends fieldholder
 block inputField
+    label(for=inputID) #{label}
     textarea(name=name,id=inputID).textarea.form-control
         | #{value}

@@ -1,3 +1,4 @@
 extends fieldholder
 block inputField
+    label(for=inputID) #{label}
     input(type="date",name=name,id=inputID,value=value).date.form-control
