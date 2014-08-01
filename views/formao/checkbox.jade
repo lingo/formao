@@ -1,7 +1,7 @@
-extends fieldholder
-block inputField
-    label(for=inputID) #{label}
-        - attr = {}
-        if value
-            - attr.checked = true;
-        input(type="checkbox",name=name,id=inputID,value=1).checkbox.form-control&attributes(attr)
+.checkbox
+    block inputField
+        label(for=inputID) #{label}
+            - attr = {}
+            if value
+                - attr.checked = true;
+            input(type="checkbox",name=name,id=inputID,value=1).checkbox&attributes(attr)
