@@ -238,5 +238,24 @@ describe('Code should work!', function() {
             .catch(done);
     });
 
+    it('prerender should give form data', function(done) {
+        form.prerender();
+        form.should.have.property('fields');
+        Object.keys(form.fields()).should.have.length(6);
+        var fields = form.fields();
+        fields.should.have.property('name');
+        fields.should.have.property('description');
+        fields.should.have.property('startDate');
+        fields.should.have.property('endDate');
+        fields.should.have.property('completed');
+        fields.should.have.property('stage');
+        fields.stage.should.have.property('values', {
+                'pending':   'pending',
+                'cancelled': 'cancelled',
+                'processed': 'processed'
+        });
+        done();
+    });
+
 });
 
