@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url":  "https://github.com/lingo/formao"
+    "url": "https://github.com/lingo/formao"
   },
   "bugs": "https://github.com/lingo/formao/issues",
   "directories": {
@@ -25,17 +25,21 @@
   "author": "Luke Hudson <luke@speak.geek.nz>",
   "license": "MIT",
   "devDependencies": {
-    "cheerio": "^0.17.0",
-    "express": "^4.7.2",
-    "mocha": "^1.21.3",
+    "cheerio":          "^0.17.0",
+    "express":          "^4.7.2",
+    "jade":             "^1.5.0",
+    "mocha":            "^1.21.3",
+    "sequelize":        "^1.7.9",
     "sequelize-sqlite": "^1.7.0",
-    "should": "^4.0.4"
+    "should":           "^4.0.4"
   },
   "dependencies": {
     "bluebird": "^2.2.2",
-    "lodash": "^2.4.1"
+    "lodash":   "^2.4.1"
   },
   "peerDependencies": {
-    "sequelize": "^1.7.9"
+    "sequelize": "^1.7.9",
+    "express":   "^4.7.2",
+    "jade":      "^1.5.0"
   }
 }
