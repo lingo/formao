@@ -1,4 +1,5 @@
 # Formao
+[![Build Status](https://travis-ci.org/lingo/formao.svg?branch=master)](https://travis-ci.org/lingo/formao)
 
 ## Author
 Luke Hudson <formao@speak.geek.nz>
