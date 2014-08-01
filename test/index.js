@@ -138,7 +138,8 @@ describe('Code should work!', function() {
                 $form.attr('method').should.equal('PUT');
                 $form.attr('action').should.equal(fakeRequest.url);
                 $form.attr('class').should.equal('mytest verbose');
-                $form.find('input').should.have.length(4);
+                $form.find('input').should.have.length(5);
+                $form.find('input:checkbox').should.have.length(1);
                 $form.find('textarea').should.have.length(1);
                 $form.find('textarea').text().should.equal(fakeRequest.body.description);
                 $form.find('input.date').should.have.length(2);
@@ -173,7 +174,8 @@ describe('Code should work!', function() {
                 $form.attr('method').should.equal('PUT');
                 $form.attr('action').should.equal(fakeRequest.url);
                 $form.attr('class').should.equal('mytest verbose');
-                $form.find('input').should.have.length(4);
+                $form.find('input').should.have.length(5);
+                $form.find('input:checkbox').should.have.length(1);
                 $form.find('textarea').should.have.length(1);
                 $form.find('textarea').text().should.equal(fakeRequest.body.description);
                 $form.find('input.date').should.have.length(2);
