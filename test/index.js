@@ -222,5 +222,21 @@ describe('Code should work!', function() {
             .catch(done);
     });
 
+    it('should render checkboxes correctly', function(done) {
+        form = null;
+        form = new Formao(config.models.MyModel);
+
+        form
+            .render(config.app, fakeRequest)
+            .then(function(html) {
+                var $    = cheerio.load(html);
+                var $form = $('form#MyModel_Form');
+                should.exist($form[0]);
+                should.not.exist($form.find('input.checkbox').attr('checked'));
+                done();
+            })
+            .catch(done);
+    });
+
 });
 

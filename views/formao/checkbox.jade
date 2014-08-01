@@ -1,3 +1,6 @@
 extends fieldholder
 block inputField
-    input(type="checkbox",name=name,id=inputID,value=1,checked=value).checkbox.form-control
+    - attr = {}
+    if value
+        - attr.checked = true;
+    input(type="checkbox",name=name,id=inputID,value=1).checkbox.form-control&attributes(attr)
