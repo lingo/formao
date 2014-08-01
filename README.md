@@ -71,11 +71,12 @@ Here's a quick list.
 - Support more data types (missing some still)
 - Test different dialects
 - Handle associations?
-- Allow for adding custom data into the HTML without editing the templates
+- ~Allow for adding custom data into the HTML without editing the templates~
+    + ~Appending in custom association fields to the form~
+        * Can be done via formao.appendTemplate or formao.appendHTML
     + For instance, per-input html (bootstrap input-group-addon?)
-    + Appending submit etc to the form (this is rather vital!)
-        * Currently a default submit is included in form template
-    + Appending in custom association fields to the form
+    + ~Appending submit etc to the form (this is rather vital!)~
+        * Currently a default submit is included in form template, but there should be better methods
 
 ## API
 
@@ -137,5 +138,9 @@ Render the HTML finally.
 
 A [Bluebird][bluebird] promise is returned.
 
+
+## The name
+
+**Formao** is the colloquial pronounciation in many dialects of spanish of **Formado** which means **formed or trained or educated**. The english phonetic spelling of this would be something like **form-ow**, but hopefully using this package doesn't cause any exclamations of **Ow!**)
 
 [bluebird]: https://www.npmjs.org/package/bluebird "NPM package for bluebird"
