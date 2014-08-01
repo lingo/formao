@@ -12,6 +12,7 @@ var MyModel   = sequelize.define('MyModel', {
     description: { type: Sequelize.TEXT,     allowNull: true },
     startDate:   { type: Sequelize.DATE,     allowNull: false, defaultValue: Sequelize.NOW },
     endDate:     { type: Sequelize.DATE,     allowNull: false, defaultValue: Sequelize.NOW },
+    stage:       { type: Sequelize.ENUM('pending','processed','cancelled'),  allowNull: false, defaultValue: 'pending'},
     completed:   { type: Sequelize.BOOLEAN,  allowNull: false, defaultValue: false }
 });
 

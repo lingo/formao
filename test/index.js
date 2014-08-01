@@ -139,6 +139,8 @@ describe('Code should work!', function() {
                 $form.attr('action').should.equal(fakeRequest.url);
                 $form.attr('class').should.equal('mytest verbose');
                 $form.find('input').should.have.length(5);
+                $form.find('select').should.have.length(1);
+                should.exist($form.find('select')[0]);
                 $form.find('input:checkbox').should.have.length(1);
                 $form.find('textarea').should.have.length(1);
                 $form.find('textarea').text().should.equal(fakeRequest.body.description);
