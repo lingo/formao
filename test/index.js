@@ -107,6 +107,18 @@ describe('Code should work!', function() {
         form.labels().should.have.property('startDate',   'Start Date');
     });
 
+    it('should allow appending html from a template to the form', function() {
+        form.appendTemplate('my/index');
+        form._append.should.have.length(1);
+        form._append[0].should.have.property('template', 'my/index');
+    });
+
+    it('should allow appending raw html to the form', function() {
+        var html = '<div id="test"></div>';
+        form.appendHTML(html);
+        form._append.should.have.length(1);
+        form._append[0].should.have.property('html', html);
+    });
 
     it('should render correctly', function(done) {
         form
@@ -166,6 +178,40 @@ describe('Code should work!', function() {
                 $form.find('input.date').should.have.length(2);
                 $form.find('input#MyModel_Form_name').val().should.equal(fakeRequest.body.name);
                 $form.find('textarea#MyModel_Form_description').siblings('label').text().should.equal('Project description');
+                done();
+            })
+            .catch(done);
+    });
+
+    it('should render appended raw html', function(done) {
+        form = null;
+        form = new Formao(config.models.MyModel);
+
+        form
+            .appendHTML('<div id="test"></div>')
+            .render(config.app, fakeRequest)
+            .then(function(html) {
+                var $    = cheerio.load(html);
+                var $form = $('form#MyModel_Form');
+                should.exist($form[0]);
+                should.exist($('div#test')[0]);
+                done();
+            })
+            .catch(done);
+    });
+
+    it('should render appended html from a template', function(done) {
+        form = null;
+        form = new Formao(config.models.MyModel);
+
+        form
+            .appendTemplate('../test/testappend.jade')
+            .render(config.app, fakeRequest)
+            .then(function(html) {
+                var $    = cheerio.load(html);
+                var $form = $('form#MyModel_Form');
+                should.exist($form[0]);
+                should.exist($('div#test-template')[0]);
                 done();
             })
             .catch(done);
