@@ -67,11 +67,13 @@ var form = new Formao(Model, { templateDir: 'forms'})
 This is a brand new module, so there are lots of things to do.
 Here's a quick list.
 
-- Support more data types (missing ENUM and others)
+- Support more data types (missing some still)
+- Test different dialects
 - Handle associations?
 - Allow for adding custom data into the HTML without editing the templates
     + For instance, per-input html (bootstrap input-group-addon?)
     + Appending submit etc to the form (this is rather vital!)
+        * Currently a default submit is included in form template
     + Appending in custom association fields to the form
 
 ## API
@@ -115,6 +117,13 @@ Use the `data` *Object* to set the input fields values. This may be a sequelize 
 
 ### formao.addAttribute(key, value)
 Add an HTML attribute to the rendered `<form>` tag.
+
+### formao.appendHTML(html)
+Append this raw html to the end of the form (before submit)
+
+### formao.appendTemplate(template, data)
+Render the given template, using the provided data and append it to the form
+before the submit
 
 ### formao.addClass(classnames)
 Add a CSS class (or several, space-separated) to the `<form>` tag's `class` attribute.
