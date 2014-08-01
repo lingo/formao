@@ -120,7 +120,7 @@ describe('Code should work!', function() {
             .then(function(html) {
                 var $    = cheerio.load(html);
                 var $form = $('form#MyModel_Form');
-                should.exist($form);
+                should.exist($form[0]);
                 $form.attr('data-testing').should.equal('12345');
                 $form.attr('method').should.equal('PUT');
                 $form.attr('action').should.equal(fakeRequest.url);
@@ -155,7 +155,7 @@ describe('Code should work!', function() {
             .then(function(html) {
                 var $    = cheerio.load(html);
                 var $form = $('form#MyModel_Form');
-                should.exist($form);
+                should.exist($form[0]);
                 $form.attr('data-testing').should.equal('12345');
                 $form.attr('method').should.equal('PUT');
                 $form.attr('action').should.equal(fakeRequest.url);
