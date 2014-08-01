@@ -1,0 +1,5 @@
+extends fieldholder
+block inputField
+    select(name=name,id=inputID).select.form-control
+        for label, value in values
+            option(value=value)= label
