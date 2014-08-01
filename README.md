@@ -10,8 +10,23 @@ A forms library designed to scaffold HTML forms from your Sequelize models.
 
     npm install formao # --save # Use --save to add to your package.json
 
-By  default, Formao looks for templates in `formao/` inside your views directory.
-You may either copy `node_modules/formao/views/formao/` to your views directory and modify these templates as desired, or you may change where the views are searched for using the `templateDir` option (see [Constructor Options](#options))
+## Templates
+
+By  default, Formao uses its own templates.
+To see what templates are used for each data type, look at the 
+`node_modules/formao/views/formao` directory.
+
+`fieldholder.jade` is used to wrap each input field
+`form.jade` is the overall form template
+The rest are templates for each input type.
+
+You may copy `node_modules/formao/views/formao/` to your views directory and modify these templates as desired.  You will need to change where the views are searched for using the `templateDir` option (see [Constructor Options](#options)).  For example (assuming you have copied these templates to your views/forms directory):
+
+~~~js
+// Look in your app views/forms directory
+var form = new Formao(Model, { templateDir: 'forms'})
+~~~
+
 
 ## Usage example
 
