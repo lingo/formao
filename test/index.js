@@ -46,6 +46,17 @@ describe('Code should work!', function() {
         form.method().should.equal('GET');
     });
 
+    it('should set options', function() {
+        form = null;
+        form = new Formao(config.models.MyModel, {
+            templateDir: 'abc/def'
+        });
+
+        form.should.have.property('_options');
+        form._options.should.have.property('templateDir', 'abc/def');
+    });
+
+
     it('should chain set action and method', function() {
         form
             .action('/project')
