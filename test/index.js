@@ -84,6 +84,12 @@ describe('Code should work!', function() {
         form.attr().should.have.property('class', ['test','another']);
     });
 
+    it('should generate neat labels by default', function() {
+        form.labels().should.have.property('name',        'Name');
+        form.labels().should.have.property('description', 'Description');
+        form.labels().should.have.property('startDate',   'Start Date');
+    });
+
     it('should allow overriding labels', function() {
         form
             .label('name', 'Name:');
@@ -93,11 +99,12 @@ describe('Code should work!', function() {
     it('should allow overriding several labels at once', function() {
         form
             .labels({
-                name:        'Name',
+                name:        'Project Name',
                 description: 'Project description'
             });
-        form.labels().should.have.property('name',        'Name');
+        form.labels().should.have.property('name',        'Project Name');
         form.labels().should.have.property('description', 'Project description');
+        form.labels().should.have.property('startDate',   'Start Date');
     });
 
 
