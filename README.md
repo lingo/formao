@@ -68,15 +68,17 @@ var form = new Formao(Model, { templateDir: 'forms'})
 This is a brand new module, so there are lots of things to do.
 Here's a quick list.
 
-- Support more data types (missing some still)
-- Test different dialects
-- Handle associations?
-- ~Allow for adding custom data into the HTML without editing the templates~
-    + ~Appending in custom association fields to the form~
-        * Can be done via formao.appendTemplate or formao.appendHTML
+- [ ] Support more data types (missing some still)
+- [ ] Test different dialects
+    - [x] sqlite
+    - [x] postgres
+- [ ] Handle associations?
+- [x] Allow for adding custom data into the HTML without editing the templates~
+    + Appending in custom association fields to the form?
+        * [x] Can be done via formao.appendTemplate or formao.appendHTML
     + For instance, per-input html (bootstrap input-group-addon?)
-    + ~Appending submit etc to the form (this is rather vital!)~
-        * Currently a default submit is included in form template, but there should be better methods
+    + [ ] Appending submit etc to the form (this is rather vital!)
+        * [x] Currently a default submit is included in form template, but there should be better methods
 
 ## API
 
@@ -129,6 +131,77 @@ before the submit
 
 ### formao.addClass(classnames)
 Add a CSS class (or several, space-separated) to the `<form>` tag's `class` attribute.
+
+### formao.prerender(req)
+Calculates all the viewmodels for the fields, but renders nothing.
+You can access these viewmodels via `formao.fields()`
+`req` is an optional request to use for filling the from (as with `formao.render`)
+
+### formao.fields()
+Return the viewmodel.
+This can be used to customize your own forms completely.
+
+#### Example
+```js
+// Model
+var MyModel   = sequelize.define('MyModel', {
+    name:        { type: Sequelize.STRING,   allowNull: false },
+    description: { type: Sequelize.TEXT,     allowNull: true },
+    startDate:   { type: Sequelize.DATE,     allowNull: false, defaultValue: Sequelize.NOW },
+    endDate:     { type: Sequelize.DATE,     allowNull: false, defaultValue: Sequelize.NOW },
+    stage:       { type: Sequelize.ENUM('pending','processed','cancelled'),  allowNull: false, defaultValue: 'pending'},
+    completed:   { type: Sequelize.BOOLEAN,  allowNull: false, defaultValue: false }
+});
+```
+
+```js
+formao.prerender();
+formao.fields();
+// Returns the following
+// These values are set from model defaultValues
+// Otherwise, values are set from formao.fill()
+{ name: 
+   { label: 'Name',
+     name: 'name',
+     attr: { id: 'MyModel_Form_name' },
+     value: '',
+     template: 'text' },
+  description: 
+   { label: 'Description',
+     name: 'description',
+     attr: { id: 'MyModel_Form_description' },
+     value: '',
+     template: 'textarea' },
+  startDate: 
+   { label: 'Start Date',
+     name: 'startDate',
+     attr: { id: 'MyModel_Form_startDate' },
+     value: Date('Sat Aug 02 2014 13:09:48 GMT+0200 (CEST)'),
+     template: 'date' },
+  endDate: 
+   { label: 'End Date',
+     name: 'endDate',
+     attr: { id: 'MyModel_Form_endDate' },
+     value: Date('Sat Aug 02 2014 13:09:48 GMT+0200 (CEST)'),
+     template: 'date' },
+  stage: 
+   { label: 'Stage',
+     name: 'stage',
+     attr: { id: 'MyModel_Form_stage' },
+     value: 'pending',
+     values: 
+      { pending: 'pending',
+        processed: 'processed',
+        cancelled: 'cancelled' },
+     template: 'select' },
+  completed: 
+   { label: 'Completed',
+     name: 'completed',
+     attr: { id: 'MyModel_Form_completed' },
+     value: '',
+     template: 'checkbox' } }
+
+```
 
 ### formao.render(app /*, req */) -> Promise
 Render the HTML finally.
