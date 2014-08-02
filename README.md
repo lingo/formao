@@ -43,7 +43,14 @@ var form = new Formao(Model, { templateDir: 'forms'})
 
     // create a form from the model defined above.
     var form = new Formao(Project)
+    
+    // then simply
+    
+    form.render(app, req).then(function(html) {
+        res.render('mypage', { form: html });
+    });
 
+    // Or, pulling out all the stops.
     form.
         .method('POST')         // set the Method
         .action('/project/add') // Set the Action
