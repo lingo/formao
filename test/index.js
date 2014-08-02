@@ -239,6 +239,7 @@ describe('Code should work!', function() {
     });
 
     it('prerender should give form data', function(done) {
+        form.fill(fakeRequest.body);
         form.prerender();
         form.should.have.property('fields');
         Object.keys(form.fields()).should.have.length(6);

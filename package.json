@@ -1,6 +1,6 @@
 {
   "name": "formao",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Form scaffolding from Sequelize models",
   "main": "index.js",
   "repository": {
